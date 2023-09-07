@@ -17,7 +17,7 @@ import auth.service.User;
 import mvc.command.CommandHandler;
 
 public class ModifyArticleHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/modifyForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/board/modifyForm.jsp";
 	private ReadArticleService readService = new ReadArticleService();
 	private ModifyArticleService modifyService = new ModifyArticleService();
 	
@@ -84,7 +84,7 @@ public class ModifyArticleHandler implements CommandHandler {
 		try {
 			modifyService.modify(modReq);
 			
-			return "/WEB-INF/view/modifySuccess.jsp";
+			return "/WEB-INF/view/board/modifySuccess.jsp";
 		} catch(ArticleNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			

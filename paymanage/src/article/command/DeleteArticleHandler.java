@@ -17,7 +17,7 @@ import auth.service.User;
 import mvc.command.CommandHandler;
 
 public class DeleteArticleHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/readArticle.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/board/readArticle.jsp";
 	private ReadArticleService readService = new ReadArticleService();
 	private DeleteArticleService deleteService = new DeleteArticleService();
 
@@ -39,7 +39,7 @@ public class DeleteArticleHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
 		deleteService.allDelte();
 		
-		return "/WEB-INF/view/deleteSuccess.jsp";
+		return "/WEB-INF/view/board/deleteSuccess.jsp";
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
@@ -71,7 +71,7 @@ public class DeleteArticleHandler implements CommandHandler {
 
 			deleteService.delete(delReq);
 
-			return "/WEB-INF/view/deleteSuccess.jsp";
+			return "/WEB-INF/view/board/deleteSuccess.jsp";
 		} catch (ArticleNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 

@@ -22,6 +22,6 @@ public class ListEmployeeInfoHandler implements CommandHandler {
 		EmployeePage employeePage = listService.getEmployeePage(pageNo);
 		req.setAttribute("employeePage", employeePage);
 		
-		return "/WEB-INF/view/listEmployeeInfo.jsp";
+		return "/WEB-INF/view/employee/listEmployeeInfo.jsp";
 	}
 }
