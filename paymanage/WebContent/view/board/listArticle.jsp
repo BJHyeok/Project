@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판 예제</title>
+<title>게시글 목록</title>
 
 <style type="text/css">
 header {
@@ -96,13 +96,50 @@ footer {
 	background-color: darkgray;
 	height: 50px;
 }
+
+.tg  {
+	border-collapse:collapse;
+	border-color:#9ABAD9;
+	border-spacing:0;
+}
+
+.tg td{
+	background-color:#EBF5FF;
+	border-color:#9ABAD9;
+	border-style:solid;
+	border-width:1px;
+	color:#444;
+  	font-family:Arial, sans-serif;
+  	font-size:14px;
+  	overflow:hidden;
+  	padding:10px 20px;
+  	word-break:normal;
+  }
+.tg th{
+	background-color:#409cff;
+	border-color:#9ABAD9;
+	border-style:solid;
+	border-width:1px;
+	color:#fff;
+  	font-family:Arial, sans-serif;
+  	font-size:14px;
+  	font-weight:normal;
+  	overflow:hidden;
+  	padding:10px 20px;
+  	word-break:normal;
+}
+.tg .tg-c3ow{
+	border-color:inherit;
+	text-align:center;
+	vertical-align:top
+}
 </style>
 </head>
 <body>
-	<!-- header 변경 X-->
+<!-- header 변경 X-->
 	
 	<header>
-		<a href="/paymanage/"><img src="imgs/logo_transparent.png" style="vertical-align:middle; margin-right: auto;" width="250" height="250"></a>
+		<a href="/paymanage/"><img src="../imgs/logo_transparent.png" style="vertical-align:middle; margin-right: auto;" width="250" height="250"></a>
 			<span style="color:white; font-weight: bold; margin-top: 20px; margin-left: 50px">Hexagon Salary management</span>
 			<c:if test="${empty authUser}">
 				<table style="	float: right; margin-right: 100px;	">
@@ -141,31 +178,52 @@ footer {
 	<!-- Information 변경 가능한 정보 -->
 	
 		<article>
-			<h1>급여 관리 시스템 사용설명</h1>
-			<section>
-				<h2>급여관리</h2>
-				<p>
-					● 사원별 급여 및 상여정보를 편리하게 입력하고, 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>인사관리</h2>
-				<p>
-					● 전체 사원현황을 한 눈에 볼 수 있으며 사원별 정보를 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>근태관리</h2>
-				<p>
-					● 사원별 근태 및 휴가정보를 입력하고, 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>퇴직관리</h2>
-				<p>
-					● 사원 퇴직시 퇴직처리 및 퇴직급여 지급여부를 확인할 수 있습니다.
-				</p>
-			</section>
+		
+			<table class="tg" style="width: 1300px; text-align: center;">
+			<thead>
+			  <tr>
+			    <th class="tg-c3ow" style="width: 100px;">번호</th>
+			    <th class="tg-c3ow">제목</th>
+			    <th class="tg-c3ow" style="width: 150px;">작성자</th>
+			    <th class="tg-c3ow" style="width: 150px;">조회수</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <c:if test="${articlePage.hasNoArticles()}">
+				<tr>
+					<td colspan="4">게시글이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:forEach var="article" items="${articlePage.content}">
+				<tr>
+					<td>${article.number}</td>
+					<td>
+						<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
+							<c:out value="${article.title}" />
+						</a>
+					</td>
+					<td>${article.writer.name}</td>
+					<td>${article.readCount}</td>
+				</tr>
+			</c:forEach>
+			<c:if test="${articlePage.hasArticles()}">
+				<tr style="text-align: center;">
+					<td colspan="4">
+						<c:if test="${articlePage.startPage > 5 }">
+							<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+						</c:if>
+						<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
+							<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+						</c:forEach>
+						<c:if test="${articlePage.endPage < articlePage.totalPages}">
+							<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+						</c:if>
+						<a href="write.do">[게시글 쓰기]</a>
+					</td>
+				</tr>
+			</c:if>
+			</tbody>
+			</table>
 		</article>
 		
 	<!-- End of Information -->
@@ -176,5 +234,7 @@ footer {
 		<p>Hexagon</p>
 	</footer>
 
+
+	
 </body>
 </html>

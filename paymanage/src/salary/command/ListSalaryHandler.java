@@ -21,6 +21,6 @@ public class ListSalaryHandler implements CommandHandler{
 		SalaryPage salaryPage = listService.getSalaryPage(pageNo);
 		req.setAttribute("salaryPage", salaryPage);
 
-		return "/WEB-INF/view/salary/listSalary.jsp";
+		return "/view/salary/listSalary.jsp";
 	}
 }

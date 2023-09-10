@@ -14,7 +14,7 @@ import auth.service.User;
 import mvc.command.CommandHandler;
 
 public class LoginHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/login/loginForm.jsp";
+	private static final String FORM_VIEW = "/view/login/loginForm.jsp";
 	private LoginService loginService = new LoginService();
 	
 	@Override

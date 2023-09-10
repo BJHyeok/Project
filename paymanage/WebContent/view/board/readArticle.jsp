@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판 예제</title>
-
+<title>게시글 읽기</title>
 <style type="text/css">
 header {
 	background-color: #87CEFA;
@@ -96,13 +96,24 @@ footer {
 	background-color: darkgray;
 	height: 50px;
 }
+
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 20px;word-break:normal;}
+  
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 20px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-8nlf{background-color:#409cff;border-color:inherit;color:#ffffff;text-align:center;vertical-align:top}
 </style>
+
 </head>
 <body>
-	<!-- header 변경 X-->
+
+		<!-- header 변경 X-->
 	
 	<header>
-		<a href="/paymanage/"><img src="imgs/logo_transparent.png" style="vertical-align:middle; margin-right: auto;" width="250" height="250"></a>
+		<a href="/paymanage/"><img src="../imgs/logo_transparent.png" style="vertical-align:middle; margin-right: auto;" width="250" height="250"></a>
 			<span style="color:white; font-weight: bold; margin-top: 20px; margin-left: 50px">Hexagon Salary management</span>
 			<c:if test="${empty authUser}">
 				<table style="	float: right; margin-right: 100px;	">
@@ -141,31 +152,41 @@ footer {
 	<!-- Information 변경 가능한 정보 -->
 	
 		<article>
-			<h1>급여 관리 시스템 사용설명</h1>
-			<section>
-				<h2>급여관리</h2>
-				<p>
-					● 사원별 급여 및 상여정보를 편리하게 입력하고, 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>인사관리</h2>
-				<p>
-					● 전체 사원현황을 한 눈에 볼 수 있으며 사원별 정보를 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>근태관리</h2>
-				<p>
-					● 사원별 근태 및 휴가정보를 입력하고, 관리합니다.
-				</p>
-			</section>
-			<section>
-				<h2>퇴직관리</h2>
-				<p>
-					● 사원 퇴직시 퇴직처리 및 퇴직급여 지급여부를 확인할 수 있습니다.
-				</p>
-			</section>
+			
+			<table class="tg" style="width: 1300px; text-align: center;">
+			<thead>
+			  <tr>
+			    <th class="tg-c3ow" style="width: 100px;">번호</th>
+			    <th class="tg-c3ow">제목</th>
+			    <th class="tg-c3ow" style="width: 150px;">작성자</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+			    <td class="tg-c3ow">${articleData.article.number}</td>
+			    <td class="tg-c3ow">${articleData.article.title}</td>
+			    <td class="tg-c3ow">${articleData.article.writer.name}</td>
+			  </tr>
+			  <tr>
+			    <td class="tg-8nlf" rowspan="2">내용</td>
+			    <td class="tg-c3ow" colspan="2" rowspan="2">${articleData.getContent()}</td>
+			  </tr>
+			  <tr>
+
+			  </tr>
+			  <tr>
+			  		<td colspan="3">
+			  	 	<c:set var="pageNo" value="${empty param.pageNo?'1':param.pageNo}" />
+						<a href="list.do?pageNo=${pageNo}">[목록]</a>
+						<c:if test="${authUser.id == articleData.article.writer.id}">
+							<a href="modify.do?no=${articleData.article.number}">[게시글 수정]</a>
+							<a href="delete.do?no=${articleData.article.number}">[게시글 삭제]</a>
+						</c:if>
+			  	</td>
+			  </tr>
+			</tbody>
+			</table>
+			
 		</article>
 		
 	<!-- End of Information -->
@@ -175,6 +196,7 @@ footer {
 	<footer>
 		<p>Hexagon</p>
 	</footer>
+
 
 </body>
 </html>

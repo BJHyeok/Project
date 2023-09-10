@@ -21,6 +21,6 @@ public class ListRetireCommand implements CommandHandler{
 		RetirePage retirePage = listService.getRetirePage(pageNo);
 		req.setAttribute("retirePage", retirePage);
 		
-		return "/WEB-INF/view/retire/listRetire.jsp";
+		return "/view/retire/listRetire.jsp";
 	}
 }

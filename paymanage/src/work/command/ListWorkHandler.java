@@ -21,6 +21,6 @@ public class ListWorkHandler implements CommandHandler{
 		WorkPage workPage = listService.getWorkPage(pageNo);
 		req.setAttribute("workPage", workPage);
 		
-		return "/WEB-INF/view/work/listWorkList.jsp";
+		return "/view/work/listWorkList.jsp";
 	}
 }

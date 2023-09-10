@@ -14,7 +14,7 @@ import member.service.MemberNotFoundException;
 import mvc.command.CommandHandler;
 
 public class ChangePasswordHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/login/changePwdForm.jsp";
+	private static final String FORM_VIEW = "/view/login/changePwdForm.jsp";
 	private ChangePasswordService changePwdSvc = new ChangePasswordService();
 	
 	@Override
@@ -57,7 +57,7 @@ public class ChangePasswordHandler implements CommandHandler {
 		
 		try {
 			changePwdSvc.changePassword(user.getId(), curPwd, newPwd);
-			return "/WEB-INF/view/login/changePwdSuccess.jsp";
+			return "/view/login/changePwdSuccess.jsp";
 		} catch(InvalidPasswordException e) {
 			errors.put("badCurPwd", Boolean.TRUE);
 			return FORM_VIEW;

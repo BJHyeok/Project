@@ -12,7 +12,7 @@ import member.service.JoinService;
 import mvc.command.CommandHandler;
 
 public class JoinHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/login/joinForm.jsp";
+	private static final String FORM_VIEW = "/view/login/joinForm.jsp";
 	private JoinService joinService = new JoinService();
 	
 	@Override
@@ -49,7 +49,7 @@ public class JoinHandler implements CommandHandler {
 		
 		try {
 			joinService.join(joinReq);
-			return "/WEB-INF/view/login/joinSuccess.jsp";
+			return "/view/login/joinSuccess.jsp";
 		} catch(DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
