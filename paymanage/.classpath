@@ -9,14 +9,13 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/jar/commons-dbcp2-2.1.jar"/>
-	<classpathentry kind="lib" path="D:/jar/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="D:/jar/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="D:/jar/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/jar/commons-pool2-2.4.1.jar"/>
-	<classpathentry kind="lib" path="D:/jar/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/jar/mysql-connector-java-5.1.33-bin.jar"/>
-	<classpathentry kind="lib" path="D:/jar/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/data/commons-dbcp2-2.1.jar"/>
+	<classpathentry kind="lib" path="D:/data/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/data/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/data/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/data/commons-pool2-2.4.1.jar"/>
+	<classpathentry kind="lib" path="D:/data/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/data/ojdbc6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
