@@ -1,5 +1,7 @@
 package article.command;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class WriteArticleHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
@@ -48,7 +50,12 @@ public class WriteArticleHandler implements CommandHandler {
 		int newArticleNo = writeService.write(writeReq);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
-		return "/view/board/newArticleSuccess.jsp";
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = resp.getWriter();
+		writer.println("<script>alert('게시글을 등록했습니다.');  location.href='list.do';</script>"); 
+		writer.close();
+		
+		return "/view/board/listArticle.jsp";
 	}
 
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {

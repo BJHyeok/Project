@@ -218,12 +218,14 @@ footer {
 						<c:if test="${articlePage.endPage < articlePage.totalPages}">
 							<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
 						</c:if>
-						<a href="write.do">[게시글 쓰기]</a>
+						
 					</td>
 				</tr>
+
 			</c:if>
 			</tbody>
 			</table>
+			<a href="write.do">[게시글 쓰기]</a>
 		</article>
 		
 	<!-- End of Information -->

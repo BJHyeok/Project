@@ -1,6 +1,7 @@
 package article.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +85,12 @@ public class ModifyArticleHandler implements CommandHandler {
 		try {
 			modifyService.modify(modReq);
 			
-			return "/view/board/modifySuccess.jsp";
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			writer.println("<script>alert('게시글을 수정하였습니다.');  location.href='list.do';</script>"); 
+			writer.close();
+			
+			return "/view/board/listArticle.jsp";
 		} catch(ArticleNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			
