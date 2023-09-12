@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import mvc.command.CommandHandler;
 
-public class EditSalaryHandler implements CommandHandler {
+public class ModifySalaryHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {

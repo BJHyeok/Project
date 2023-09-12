@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import article.model.Article;
 import employee.model.Employee;
 import jdbc.JdbcUtil;
 import salary.model.Salary;
@@ -133,6 +132,23 @@ public class SalaryDao {
 			return salary;
 		} finally {
 			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public int insert(Connection conn, SalaryPay salpay) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"insert into salary_item (emp_no, base_pay, food, duty_charge, transport, bonus) values (?,?,?,?,?,?)");
+			pstmt.setString(1, salpay.getEmp_no());
+			pstmt.setInt(2, salpay.getBase_pay());
+			pstmt.setInt(3, salpay.getFood());
+			pstmt.setInt(4, salpay.getDuty_charge());
+			pstmt.setInt(5, salpay.getTransport());
+			pstmt.setInt(6, salpay.getBonus());
+			return pstmt.executeUpdate();
+		} finally {
 			JdbcUtil.close(pstmt);
 		}
 	}
