@@ -154,74 +154,82 @@ footer {
 
 
 		<article>
-		<section>
-			<form action="salary/write.do" method="post">
-				<table border="1">
-					<tr>
-						<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
+			<section>
+				<form action="salary/write.do" method="post">
+					<table border="1">
+						<tr>
+							<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
 
 
 
-						<td>식비 : <input type="text" id="food" name="food"></td>
+							<td>식비 : <input type="text" id="food" name="food"></td>
 
 
-						<td>당직비 : <input type="text" id="duty_charge"
-							name="duty_charge"></td>
+							<td>당직비 : <input type="text" id="duty_charge"
+								name="duty_charge"></td>
 
 
-						<td>교통비 : <input type="text" id="transport" name="transport"></td>
+							<td>교통비 : <input type="text" id="transport" name="transport"></td>
 
 
-						<td>상여금 : <input type="text" id="bonus" name="bonus"></td>
-					</tr>
+							<td>상여금 : <input type="text" id="bonus" name="bonus"></td>
+						</tr>
 
-				</table>
+					</table>
 
-				<br />
+					<br />
 
-				<table border="1">
-					<tr>
-						<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
-
-
-
-						<td>건강보험 : <input type="text" id="food" name="food"></td>
-
-
-						<td>고용보험 : <input type="text" id="duty_charge"
-							name="duty_charge"></td>
-
-
-						<td>소득세 : <input type="text" id="transport" name="transport"></td>
-					</tr>
+					<table border="1">
+						<tr>
+							<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
 
 
 
-				</table>
+							<td>건강보험 : <input type="text" id="food" name="food"></td>
 
 
-				<table border="1">
-					<tr>
-						<td>지급총액 :</td>
+							<td>고용보험 : <input type="text" id="duty_charge"
+								name="duty_charge"></td>
 
 
-
-						<td>공제총액 :</td>
-
-
-						<td>실 지급액 :</td>
-					</tr>
+							<td>소득세 : <input type="text" id="transport" name="transport"></td>
+						</tr>
 
 
 
-				</table>
+					</table>
+
+
+					<table border="1">
+						<tr>
+							<td>지급총액 :</td>
 
 
 
+							<td>공제총액 :</td>
+
+
+							<td>실 지급액 :</td>
+						</tr>
 
 
 
-			</form>
+					</table>
+
+
+
+					<button type="button"
+						onclick="location.href='/view/salary/writeSalaryForm.jsp'">생성</button>
+
+					<button type="button"
+						onclick="location.href='/view/salary/writeSalaryForm.jsp'">취소</button>
+
+					<button type="button"
+						onclick="location.href='/view/salary/writeSalaryForm.jsp'">삭제</button>
+
+
+
+				</form>
 			</section>
 		</article>
 

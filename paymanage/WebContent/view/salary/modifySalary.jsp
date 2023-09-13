@@ -218,6 +218,15 @@ footer {
 
 
 
+				<button type="button"
+					onclick="location.href='/view/salary/writeSalaryForm.jsp'">수정</button>
+
+				<button type="button"
+					onclick="location.href='/view/salary/writeSalaryForm.jsp'">취소</button>
+
+				<button type="button"
+					onclick="location.href='/view/salary/writeSalaryForm.jsp'">삭제</button>
+
 
 
 				</form>
