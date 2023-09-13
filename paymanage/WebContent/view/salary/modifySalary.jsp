@@ -153,56 +153,74 @@ footer {
 		<!-- Information 변경 가능한 정보 -->
 
 		<article>
-
-			<label for="month">조회할 연월을 선택하세요: <input type="month"
-				id="month" max="2024-01" min="2000-01" value="2023-09">
-			</label>
-
 			<section>
-				<table border="1">
-					<tr>
-						<td>구분</td>
-						<td>사원번호</td>
-						<td>성명</td>
-						<td>부서</td>
-						<td>지급총액</td>
-						<td>공제총액</td>
-						<td>실제금액</td>
-
-					</tr>
-
-
-
-					<c:forEach var="salarylist" items="${salaryPage.content}">
+				<form action="salary/modify.do" method="post">
+					<table border="1">
 						<tr>
-							<td>${salarylist.salary.employee.classify}</td>
-							<td>${salarylist.salary.employee.emp_no}</td>
-							<td>${salarylist.salary.employee.emp_name}</td>
-							<td>${salarylist.salary.employee.dept}</td>
-							<td>${salarylist.total}</td>
-							<td>${salarylist.deduct}</td>
-							<td>${salarylist.real}</td>
+							<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
 
+
+
+							<td>식비 : <input type="text" id="food" name="food"></td>
+
+
+							<td>당직비 : <input type="text" id="duty_charge"
+								name="duty_charge"></td>
+
+
+							<td>교통비 : <input type="text" id="transport" name="transport"></td>
+
+
+							<td>상여금 : <input type="text" id="bonus" name="bonus"></td>
 						</tr>
-					</c:forEach>
 
+					</table>
 
+					<br />
 
-					<c:if test="${salaryPage.hasArticles()}">
+					<table border="1">
 						<tr>
-							<td colspan="4"><c:if test="${salaryPage.startPage > 5}">
-									<a href="salarylist.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-								</c:if> <c:forEach var="pNo" begin="${salaryPage.startPage}"
-									end="${salaryPage.endPage}">
-									<a href="salarylist.do?pageNo=${pNo}">[${pNo}]</a>
-								</c:forEach> <c:if test="${salaryPage.endPage < salaryPage.totalPages}">
-									<a href="salarylist.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
-								</c:if></td>
+							<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
 
+
+
+							<td>건강보험 : <input type="text" id="food" name="food"></td>
+
+
+							<td>고용보험 : <input type="text" id="duty_charge"
+								name="duty_charge"></td>
+
+
+							<td>소득세 : <input type="text" id="transport" name="transport"></td>
 						</tr>
-					</c:if>
 
-				</table>
+
+
+					</table>
+
+
+					<table border="1">
+						<tr>
+							<td>지급총액 :</td>
+
+
+
+							<td>공제총액 :</td>
+
+
+							<td>실 지급액 :</td>
+						</tr>
+
+
+
+					</table>
+
+
+
+
+
+
+				</form>
 			</section>
 		</article>
 

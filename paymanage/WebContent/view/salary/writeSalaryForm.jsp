@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판 예제</title>
+<title>급여 리스트</title>
 
 <style type="text/css">
 header {
@@ -95,7 +95,6 @@ footer {
 	background-color: darkgray;
 	height: 50px;
 }
-
 </style>
 
 
@@ -154,32 +153,76 @@ footer {
 		<!-- Information 변경 가능한 정보 -->
 
 
-			  <article>
-            <!-- 급여 내역 작성 폼 -->
-            <h2>급여 내역 작성</h2>
-            <form action="salary/write.do" method="post">
-                <label for="emp_no">사원번호:</label>
-                <input type="text" id="emp_no" name="emp_no" required><br><br>
+		<article>
+		<section>
+			<form action="salary/write.do" method="post">
+				<table border="1">
+					<tr>
+						<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
 
-                <label for="base_pay">기본급:</label>
-                <input type="number" id="base_pay" name="base_pay" required><br><br>
 
-                <label for="food">식대:</label>
-                <input type="number" id="food" name="food" required><br><br>
 
-                <label for="duty_charge">근무수당:</label>
-                <input type="number" id="duty_charge" name="duty_charge" required><br><br>
+						<td>식비 : <input type="text" id="food" name="food"></td>
 
-                <label for="transport">교통비:</label>
-                <input type="number" id="transport" name="transport" required><br><br>
 
-                <label for="bonus">보너스:</label>
-                <input type="number" id="bonus" name="bonus" required><br><br>
+						<td>당직비 : <input type="text" id="duty_charge"
+							name="duty_charge"></td>
 
-                <!-- Submit 버튼 -->
-                <input type="submit" value="저장">
-            </form>
 
+						<td>교통비 : <input type="text" id="transport" name="transport"></td>
+
+
+						<td>상여금 : <input type="text" id="bonus" name="bonus"></td>
+					</tr>
+
+				</table>
+
+				<br />
+
+				<table border="1">
+					<tr>
+						<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
+
+
+
+						<td>건강보험 : <input type="text" id="food" name="food"></td>
+
+
+						<td>고용보험 : <input type="text" id="duty_charge"
+							name="duty_charge"></td>
+
+
+						<td>소득세 : <input type="text" id="transport" name="transport"></td>
+					</tr>
+
+
+
+				</table>
+
+
+				<table border="1">
+					<tr>
+						<td>지급총액 :</td>
+
+
+
+						<td>공제총액 :</td>
+
+
+						<td>실 지급액 :</td>
+					</tr>
+
+
+
+				</table>
+
+
+
+
+
+
+			</form>
+			</section>
 		</article>
 
 		<!-- End of Information -->

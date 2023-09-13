@@ -71,6 +71,7 @@ public class SalaryDao {
 
 			pstmt.setInt(1, 1 + (page - 1) * 10);
 			pstmt.setInt(2, page * 10);
+		
 
 			rs = pstmt.executeQuery();
 
@@ -152,4 +153,36 @@ public class SalaryDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+	// SalaryDao 클래스에 getSalaryByEmpNo 메서드 추가
+	public Salary getSalaryByEmpNo(Connection conn, int empNo) throws SQLException {
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    try {
+	        pstmt = conn.prepareStatement("SELECT * FROM salary WHERE emp_no = ?");
+	        pstmt.setInt(1, empNo);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            // ResultSet에서 급여 정보를 추출하고 Salary 객체로 반환
+	            Salary salary = new Salary(
+	                rs.getString("emp_no"),
+	                rs.getDate("wage_date"),
+	                // 필요한 경우, Employee 객체도 가져와서 설정
+	                new Employee(
+	                    rs.getString("emp_no"),
+	                    rs.getString("classify"),
+	                    rs.getString("emp_name"),
+	                    rs.getString("dept"),
+	                    rs.getString("position")
+	                )
+	            );
+	            return salary;
+	        }
+	        return null; // 해당 사원 번호에 대한 급여 정보가 없을 경우 null 반환
+	    } finally {
+	        JdbcUtil.close(rs);
+	        JdbcUtil.close(pstmt);
+	    }
+	}
+
 }

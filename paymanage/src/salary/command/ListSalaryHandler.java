@@ -8,6 +8,7 @@ import salary.service.ListSalaryService;
 import salary.service.SalaryPage;
 
 public class ListSalaryHandler implements CommandHandler{
+	
 	private ListSalaryService listService = new ListSalaryService();
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
