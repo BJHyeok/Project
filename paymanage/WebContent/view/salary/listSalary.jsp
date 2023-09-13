@@ -168,13 +168,10 @@ footer {
 						<td>지급총액</td>
 						<td>공제총액</td>
 						<td>실제금액</td>
+						<td>수정버튼</td>
 
-					</tr>
-
-
-
-					<c:forEach var="salarylist" items="${salaryPage.content}">
-						<tr>
+				
+						<c:forEach var="salarylist" items="${salaryPage.content}">
 							<td>${salarylist.salary.employee.classify}</td>
 							<td>${salarylist.salary.employee.emp_no}</td>
 							<td>${salarylist.salary.employee.emp_name}</td>
@@ -182,12 +179,17 @@ footer {
 							<td>${salarylist.total}</td>
 							<td>${salarylist.deduct}</td>
 							<td>${salarylist.real}</td>
+							<td><button type="button"
+									onclick="location.href='modifySalary.jsp'">수정하기</button></td>
 
-						</tr>
-					</c:forEach>
+						</c:forEach>
+					</tr>
+
+				</table>
 
 
 
+				<table border="1">
 					<c:if test="${salaryPage.hasArticles()}">
 						<tr>
 							<td colspan="4"><c:if test="${salaryPage.startPage > 5}">
@@ -201,8 +203,10 @@ footer {
 
 						</tr>
 					</c:if>
-
 				</table>
+				
+				<button type="button" onclick="location.href='writeSalaryForm.jsp'">생성하기</button>
+				
 			</section>
 		</article>
 
