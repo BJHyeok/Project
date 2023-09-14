@@ -140,11 +140,11 @@ footer {
 			<nav>
 				<h2>목록</h2>
 				<ul>
-					<li><a href="salary/salarylist.do">급여</a></li>
-					<li><a href="employee/employeeinfo.do">인사</a></li>
-					<li><a href="work/worklist.do">근태</a></li>
-					<li><a href="retire/retirelist.do">퇴직</a></li>
-					<li><a href="article/list.do">공지사항</a></li>
+				<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
+					<li><a href="/paymanage/employee/employeeinfo.do">인사</a></li>
+					<li><a href="/paymanage/work/worklist.do">근태</a></li>
+					<li><a href="/paymanage/retire/retirelist.do">퇴직</a></li>
+					<li><a href="/paymanage/article/list.do">공지사항</a></li>
 				</ul>
 			</nav>
 		</aside>
@@ -218,14 +218,12 @@ footer {
 
 
 
-					<button type="button"
-						onclick="location.href='/view/salary/writeSalaryForm.jsp'">생성</button>
+					<input type="button" value="등록">
 
 					<button type="button"
-						onclick="location.href='/view/salary/writeSalaryForm.jsp'">취소</button>
+						onclick="location.href='salarylist.do'">취소</button>
 
-					<button type="button"
-						onclick="location.href='/view/salary/writeSalaryForm.jsp'">삭제</button>
+
 
 
 

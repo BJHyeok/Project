@@ -1,78 +1,71 @@
-//package salary.command;
-//
-//import java.io.IOException;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import mvc.command.CommandHandler;
-//import salary.model.Salary;
-//import salary.service.ModifySalaryService;
-//
-//public class ModifySalaryHandler implements CommandHandler {
-//
-//	private static final String FORM_VIEW = "/view/salary/modifySalary.jsp";
-//
-//	private ModifySalaryService modifyService = new ModifySalaryService();
-//
-//	@Override
-//	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-//		// TODO Auto-generated method stub
-//		if (req.getMethod().equalsIgnoreCase("GET")) {
-//			return processForm(req, res);
-//		} else if (req.getMethod().equalsIgnoreCase("POST")) {
-//			return processSubmit(req, res);
-//		} else {
-//			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-//			return null;
-//		}
-//	}
-//
-//	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
-//	    try {
-//	        String empNoVal = req.getParameter("emp_no");
-//	        int empNo = Integer.parseInt(empNoVal);
-//	        
-//	        // SalaryDao를 사용하여 급여 정보를 가져옵니다.
-//	        Salary salary = modifyService.getSalaryByEmpNo(empNo);
-//	        
-//	        // 급여 정보를 request 속성에 저장하여 JSP에서 사용할 수 있도록 합니다.
-//	        req.setAttribute("salary", salary);
-//	        
-//	        // 급여 수정을 위한 입력 폼을 보여줄 JSP 경로를 반환합니다.
-//	        return FORM_VIEW;
-//	    } catch (NumberFormatException e) {
-//	        // emp_no 파라미터가 숫자가 아닌 경우, 오류 메시지를 설정하고 급여 목록 화면으로 이동합니다.
-//	        req.setAttribute("error", "사원 번호는 숫자로 입력하세요.");
-//	        req.getRequestDispatcher("/view/salary/listSalary.jsp").forward(req, res);
-//	        return null;
-//	    } catch (Exception e) {
-//	        // 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동합니다.
-//	        req.setAttribute("error", "급여 정보를 불러오는 중 오류가 발생했습니다.");
-//	        req.getRequestDispatcher("/view/error.jsp").forward(req, res);
-//	        return null;
-//	    }
-//	}
-//
-//
-//	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
-//		try {
-//			// 사용자로부터 입력받은 급여 정보를 파라미터로부터 추출하고, 필요한 유효성 검사를 수행합니다.
-//			// 예를 들어, String empNoVal = req.getParameter("emp_no");
-//			// int empNo = Integer.parseInt(empNoVal);
-//
-//			// TODO: 급여 정보를 수정하는 코드를 추가해야 합니다.
-//			// 예를 들어, SalaryDao를 사용하여 급여 정보를 업데이트하는 메서드를 호출할 수 있습니다.
-//
-//			// 수정이 완료되면 급여 목록 화면으로 리다이렉트하거나 다른 적절한 화면으로 이동합니다.
-//			// res.sendRedirect(req.getContextPath() + "/view/salary/listSalary.jsp");
-//			// return null;
-//		} catch (Exception e) {
-//			// 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동합니다.
-//			req.setAttribute("error", "급여 정보 수정 중 오류가 발생했습니다.");
-//			return null;
-//		}
-//		return null; // 다른 경우는 null을 반환하여 아무 처리도 하지 않습니다.
-//	}
-//
-//}
+package salary.command;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import mvc.command.CommandHandler;
+import salary.service.ModifyRequest;
+import salary.service.ModifySalaryService;
+
+public class ModifySalaryHandler implements CommandHandler {
+
+	private ModifySalaryService modifyService = new ModifySalaryService();
+
+	@Override
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			return processForm(req, res);
+		} else if (req.getMethod().equalsIgnoreCase("POST")) {
+			return processSubmit(req, res);
+		} else {
+			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			return null;
+		}
+	}
+
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		try {
+
+			return "/view/salary/modifySalary.jsp";
+		} catch (NumberFormatException e) {
+			// emp_no 파라미터가 숫자가 아닌 경우, 오류 메시지를 설정하고 수정 폼을 다시 표시
+			req.setAttribute("error", "사원 번호는 숫자로 입력하세요.");
+			return "/view/salary/modifySalary.jsp";
+		} catch (Exception e) {
+			// 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동
+			req.setAttribute("error", "급여 정보를 불러오는 중 오류가 발생했습니다.");
+			return "/view/error.jsp"; // 오류 페이지의 경로를 적절히 변경
+		}
+	}
+
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		try {
+			// POST 요청으로 제출된 데이터를 추출하고 유효성 검사를 수행
+			String empNoVal = req.getParameter("emp_no");
+			int basePay = Integer.parseInt(req.getParameter("base_pay"));
+			int food = Integer.parseInt(req.getParameter("food"));
+			int dutyCharge = Integer.parseInt(req.getParameter("duty_charge"));
+			int transport = Integer.parseInt(req.getParameter("transport"));
+			int bonus = Integer.parseInt(req.getParameter("bonus"));
+
+			// ModifyRequest 객체 생성
+			ModifyRequest modReq = new ModifyRequest(empNoVal, basePay, food, dutyCharge, transport, bonus);
+
+			// ModifySalaryService를 사용하여 급여 정보 수정
+			modifyService.modify(modReq);
+
+			// 수정이 성공하면 성공 페이지로 리다이렉트
+			return "/view/salary/success.jsp"; // 적절한 성공 페이지의 경로로 변경
+		} catch (NumberFormatException e) {
+			// 숫자로 변환할 수 없는 데이터가 포함된 경우, 오류 메시지를 설정하고 수정 폼을 다시 표시
+			req.setAttribute("error", "유효하지 않은 입력입니다. 유효한 숫자를 입력하세요.");
+			return "/view/salary/modifySalary.jsp";
+		} catch (Exception e) {
+			// 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동
+			req.setAttribute("error", "급여 정보 수정 중 오류가 발생했습니다.");
+			return "/view/error.jsp"; // 오류 페이지의 경로를 적절히 변경
+		}
+	}
+}

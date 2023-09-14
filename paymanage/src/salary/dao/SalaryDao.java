@@ -42,7 +42,7 @@ public class SalaryDao {
 
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select * from salary_item where emp_no='1000'");
+			rs = stmt.executeQuery("select * from salary_item");
 			List<SalaryPay> result = new ArrayList<>();
 
 			while (rs.next()) {
@@ -69,6 +69,7 @@ public class SalaryDao {
 					+ "from (select e.*, s.wage_date " + "from emp e " + "join salary s " + "on e.emp_no = s.emp_no "
 					+ "order by e.emp_no desc) n) " + "where rnum between ? and ?");
 
+			
 			pstmt.setInt(1, 1 + (page - 1) * 10);
 			pstmt.setInt(2, page * 10);
 		
@@ -112,9 +113,9 @@ public class SalaryDao {
 		}
 	}
 
-	public int delete(Connection conn, int emp_no) throws SQLException {
+	public int delete(Connection conn, String emp_no) throws SQLException {
 		try (PreparedStatement pstmt = conn.prepareStatement("delete from salary_item where emp_no = ?")) {
-			pstmt.setInt(1, emp_no);
+			pstmt.setString(1, emp_no);
 			return pstmt.executeUpdate();
 		}
 	}

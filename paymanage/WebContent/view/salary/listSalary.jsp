@@ -140,11 +140,11 @@ footer {
 			<nav>
 				<h2>목록</h2>
 				<ul>
-					<li><a href="salary/salarylist.do">급여</a></li>
-					<li><a href="employee/employeeinfo.do">인사</a></li>
-					<li><a href="work/worklist.do">근태</a></li>
-					<li><a href="retire/retirelist.do">퇴직</a></li>
-					<li><a href="article/list.do">공지사항</a></li>
+					<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
+					<li><a href="/paymanage/employee/employeeinfo.do">인사</a></li>
+					<li><a href="/paymanage/work/worklist.do">근태</a></li>
+					<li><a href="/paymanage/retire/retirelist.do">퇴직</a></li>
+					<li><a href="/paymanage/article/list.do">공지사항</a></li>
 				</ul>
 			</nav>
 		</aside>
@@ -182,7 +182,7 @@ footer {
 							<td>${salarylist.deduct}</td>
 							<td>${salarylist.real}</td>
 							<td><button type="button"
-									onclick="location.href='modifySalary.jsp'">수정하기</button></td>
+									onclick="location.href='salarymodify.do'">수정하기</button></td>
 
 						</tr>
 					</c:forEach>
@@ -208,7 +208,7 @@ footer {
 				</table>
 
 				<button type="button"
-					onclick="location.href='/view/salary/writeSalaryForm.jsp'">생성하기</button>
+					onclick="location.href='salarywrite.do'">생성하기</button>
 
 			</section>
 		</article>

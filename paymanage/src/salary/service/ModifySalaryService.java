@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import salary.dao.SalaryDao;
-import salary.model.Salary;
+//import salary.model.Salary;
 
 public class ModifySalaryService {
 	private SalaryDao salaryDao = new SalaryDao();
@@ -17,23 +17,21 @@ public class ModifySalaryService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 
-			Salary salary = salaryDao.selectById(conn, modReq.getEmp_no());
-			if (salary == null) {
-				throw new Exception();
-			}
-			
-		
+//			Salary salary = salaryDao.selectById(conn, modReq.getEmp_no());
+//			if (salary == null) {
+//				throw new Exception();
+//			}
 
-			salaryDao.update(conn,modReq.getEmp_no(), modReq.getBase_pay(), modReq.getFood(), modReq.getDuty_charge(),
+			salaryDao.update(conn, modReq.getEmp_no(), modReq.getBase_pay(), modReq.getFood(), modReq.getDuty_charge(),
 					modReq.getTransport(), modReq.getBonus());
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);
+		} catch (PermissionDeniedException e) {
+			JdbcUtil.rollback(conn);
 		} finally {
 			JdbcUtil.close(conn);
 		}
-		
-		
-		}
-	}
 
+	}
+}
