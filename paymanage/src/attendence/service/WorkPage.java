@@ -1,4 +1,4 @@
-package work.service;
+package attendence.service;
 
 import java.util.List;
 

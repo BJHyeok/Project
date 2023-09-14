@@ -1,4 +1,4 @@
-package work.dao;
+package attendence.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.List;
 import employee.model.Employee;
 import jdbc.JdbcUtil;
 
-public class WorkDao {
+public class AttendenceDao {
 	public int selectCount(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;

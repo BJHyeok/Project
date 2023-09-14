@@ -1,13 +1,13 @@
-package work.command;
+package attendence.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import attendence.service.ListWorkService;
+import attendence.service.WorkPage;
 import mvc.command.CommandHandler;
-import work.service.ListWorkService;
-import work.service.WorkPage;
 
-public class ListWorkHandler implements CommandHandler{
+public class ListAttendenceHandler implements CommandHandler{
 	private ListWorkService listService = new ListWorkService();
 	
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -21,6 +21,6 @@ public class ListWorkHandler implements CommandHandler{
 		WorkPage workPage = listService.getWorkPage(pageNo);
 		req.setAttribute("workPage", workPage);
 		
-		return "/view/work/listWorkList.jsp";
+		return "/view/attendence/listAttendence.jsp";
 	}
 }
