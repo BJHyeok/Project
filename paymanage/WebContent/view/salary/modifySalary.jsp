@@ -140,7 +140,7 @@ footer {
 			<nav>
 				<h2>목록</h2>
 				<ul>
-				<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
+					<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
 					<li><a href="/paymanage/employee/employeeinfo.do">인사</a></li>
 					<li><a href="/paymanage/work/worklist.do">근태</a></li>
 					<li><a href="/paymanage/retire/retirelist.do">퇴직</a></li>
@@ -154,7 +154,7 @@ footer {
 
 		<article>
 			<section>
-				<form action="salary/modify.do" method="post">
+				<form action="salarymodify.do" method="post">
 					<table border="1">
 						<tr>
 							<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
@@ -178,37 +178,25 @@ footer {
 
 					<br />
 
-					<table border="1">
-						<tr>
-							<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
 
-
-
-							<td>건강보험 : <input type="text" id="food" name="food"></td>
-
-
-							<td>고용보험 : <input type="text" id="duty_charge"
-								name="duty_charge"></td>
-
-
-							<td>소득세 : <input type="text" id="transport" name="transport"></td>
-						</tr>
-
-
-
-					</table>
 
 
 					<table border="1">
 						<tr>
-							<td>지급총액 :</td>
+							<td>지급총액 :
+								<p>${getSalaryPage.content.total_1}</p>
+							</td>
 
 
 
-							<td>공제총액 :</td>
+							<td>공제총액 :
+								<p>${deduct}</p>
+							</td>
 
 
-							<td>실 지급액 :</td>
+							<td>실 지급액 :
+								<p>${real}</p>
+							</td>
 						</tr>
 
 
@@ -218,14 +206,13 @@ footer {
 
 
 
-				<button type="button"
-					onclick="location.href='/view/salary/writeSalaryForm.jsp'">수정</button>
+					<input type="submit" value="수정">
 
-				<button type="button"
-					onclick="location.href='salarylist.do'">취소</button>
+					<button type="button" onclick="location.href='salarylist.do'">취소</button>
 
-				<button type="button"
-					onclick="location.href='/view/salary/writeSalaryForm.jsp'">삭제</button>
+
+					<button type="button"
+						onclick="location.href='salarydelete.do?emp_no=${salaryPage.salary.employee.emp_no}'">삭제</button>
 
 
 

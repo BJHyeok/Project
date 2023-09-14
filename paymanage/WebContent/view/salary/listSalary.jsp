@@ -181,9 +181,11 @@ footer {
 							<td>${salarylist.total}</td>
 							<td>${salarylist.deduct}</td>
 							<td>${salarylist.real}</td>
-							<td><button type="button"
-									onclick="location.href='salarymodify.do'">수정하기</button></td>
-
+							<!-- <td><button type="button"
+									onclick="location.href='salarymodify.do'">수정하기</button></td> -->
+							<td><a
+								href="salarymodify.do?emp_no=${salarylist.salary.employee.emp_no}">수정하기</a>
+							</td>
 						</tr>
 					</c:forEach>
 
@@ -207,8 +209,7 @@ footer {
 					</c:if>
 				</table>
 
-				<button type="button"
-					onclick="location.href='salarywrite.do'">생성하기</button>
+				<button type="button" onclick="location.href='salarywrite.do'">생성하기</button>
 
 			</section>
 		</article>

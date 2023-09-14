@@ -26,18 +26,8 @@ public class ModifySalaryHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		try {
 
-			return "/view/salary/modifySalary.jsp";
-		} catch (NumberFormatException e) {
-			// emp_no 파라미터가 숫자가 아닌 경우, 오류 메시지를 설정하고 수정 폼을 다시 표시
-			req.setAttribute("error", "사원 번호는 숫자로 입력하세요.");
-			return "/view/salary/modifySalary.jsp";
-		} catch (Exception e) {
-			// 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동
-			req.setAttribute("error", "급여 정보를 불러오는 중 오류가 발생했습니다.");
-			return "/view/error.jsp"; // 오류 페이지의 경로를 적절히 변경
-		}
+		return "/view/salary/modifySalary.jsp";
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -55,13 +45,11 @@ public class ModifySalaryHandler implements CommandHandler {
 
 			// ModifySalaryService를 사용하여 급여 정보 수정
 			modifyService.modify(modReq);
-
+			req.setAttribute("modReq", modReq);
 			// 수정이 성공하면 성공 페이지로 리다이렉트
 			return "/view/salary/success.jsp"; // 적절한 성공 페이지의 경로로 변경
-		} catch (NumberFormatException e) {
-			// 숫자로 변환할 수 없는 데이터가 포함된 경우, 오류 메시지를 설정하고 수정 폼을 다시 표시
-			req.setAttribute("error", "유효하지 않은 입력입니다. 유효한 숫자를 입력하세요.");
-			return "/view/salary/modifySalary.jsp";
+			
+			
 		} catch (Exception e) {
 			// 예외 발생 시 오류 메시지를 설정하고 오류 페이지로 이동
 			req.setAttribute("error", "급여 정보 수정 중 오류가 발생했습니다.");

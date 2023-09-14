@@ -179,26 +179,9 @@ footer {
 
 					<br />
 
-					<table border="1">
-						<tr>
-							<td>국민연금 : <input type="text" id="base_pay" name="base_pay"></td>
+				
 
-
-
-							<td>건강보험 : <input type="text" id="food" name="food"></td>
-
-
-							<td>고용보험 : <input type="text" id="duty_charge"
-								name="duty_charge"></td>
-
-
-							<td>소득세 : <input type="text" id="transport" name="transport"></td>
-						</tr>
-
-
-
-					</table>
-
+				
 
 					<table border="1">
 						<tr>
