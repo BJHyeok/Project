@@ -1,3 +1,4 @@
+
 package salary.command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class ListSalaryHandler implements CommandHandler{
 		SalaryPage salaryPage = listService.getSalaryPage(pageNo);
 		req.setAttribute("salaryPage", salaryPage);
 
+		
+		
 		return "/view/salary/listSalary.jsp";
 	}
 }
