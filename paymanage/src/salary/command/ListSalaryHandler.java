@@ -25,6 +25,9 @@ public class ListSalaryHandler implements CommandHandler{
 
 		
 		
+		
+		
+		
 		return "/view/salary/listSalary.jsp";
 	}
 }
