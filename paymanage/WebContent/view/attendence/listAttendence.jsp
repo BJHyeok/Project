@@ -15,6 +15,12 @@
 			<td>성명</td>
 			<td>부서</td>
 			<td>직급</td>
+			<td>입력일자</td>
+			<td>근태종류</td>
+			<td>근태시작일</td>
+			<td>근태종료일</td>
+			<td>근태일수</td>
+			<td>적요</td>
 		</tr>
 
 
@@ -25,6 +31,13 @@
 				<td>${attendance.emp_name }</td>
 				<td>${attendance.dept }</td>
 				<td>${attendance.position }</td>
+				<td>${attendance.entrydate}</td>
+				<td>${attendance.attendance}</td>
+				<td>${attendance.startdate}</td>
+				<td>${attendance.enddate}</td>
+				<td>${attendance.attendance}</td>
+				<td>${attendance.enddate}</td>
+				<td>${attendance.enddate}</td>
 
 			</tr>
 		</c:forEach>

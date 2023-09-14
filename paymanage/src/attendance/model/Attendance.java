@@ -10,11 +10,11 @@ public class Attendance {
 	private String dept; // 부서
 	private String position; // 직급
 	private Date entrydate; // 입력일자
-	private String attendencetype; // 근태항목
+	private String attendancetype; // 근태항목
 	private Date startdate; // 근태 시작일
 	private Date enddate;// 근태 종료일
-	private int attendencedays;// 근태일수
-	private String description;// 근태 설명
+	private int attendancedays;// 근태일수
+	private String description;// 적요
 
 	public Attendance(String emp_no, String emp_name, String classify, String dept, String position, Date entrydate,
 			String attendencetype, Date startdate, Date enddate, int attendencedays, String description) {
@@ -24,10 +24,10 @@ public class Attendance {
 		this.dept = dept;
 		this.position = position;
 		this.entrydate = entrydate;
-		this.attendencetype = attendencetype;
+		this.attendancetype = attendencetype;
 		this.startdate = startdate;
 		this.enddate = enddate;
-		this.attendencedays = attendencedays;
+		this.attendancedays = attendencedays;
 		this.description = description;
 	}
 
@@ -80,11 +80,11 @@ public class Attendance {
 	}
 
 	public String getAttendencetype() {
-		return attendencetype;
+		return attendancetype;
 	}
 
 	public void setAttendencetype(String attendencetype) {
-		this.attendencetype = attendencetype;
+		this.attendancetype = attendencetype;
 	}
 
 	public Date getStartdate() {
@@ -104,11 +104,11 @@ public class Attendance {
 	}
 
 	public int getAttendencedays() {
-		return attendencedays;
+		return attendancedays;
 	}
 
 	public void setAttendencedays(int attendencedays) {
-		this.attendencedays = attendencedays;
+		this.attendancedays = attendencedays;
 	}
 
 	public String getDescription() {
@@ -122,8 +122,8 @@ public class Attendance {
 	@Override
 	public String toString() {
 		return "Attendence [emp_no=" + emp_no + ", emp_name=" + emp_name + ", classify=" + classify + ", dept=" + dept
-				+ ", position=" + position + ", entrydate=" + entrydate + ", attendencetype=" + attendencetype
-				+ ", startdate=" + startdate + ", enddate=" + enddate + ", attendencedays=" + attendencedays
+				+ ", position=" + position + ", entrydate=" + entrydate + ", attendencetype=" + attendancetype
+				+ ", startdate=" + startdate + ", enddate=" + enddate + ", attendencedays=" + attendancedays
 				+ ", description=" + description + "]";
 	}
 	
