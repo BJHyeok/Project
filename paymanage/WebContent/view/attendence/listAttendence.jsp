@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태 관리</title>
+<title>근태 조회</title>
 </head>
 <body>
 	<table border="1">
