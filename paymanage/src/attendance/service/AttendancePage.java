@@ -1,10 +1,10 @@
-package attendence.service;
+package attendance.service;
 
 import java.util.List;
 
 import employee.model.Employee;
 
-public class WorkPage {
+public class AttendancePage {
 	private int total;
 	private int currentPage;
 	private List<Employee> content;
@@ -12,7 +12,7 @@ public class WorkPage {
 	private int startPage;
 	private int endPage;
 
-	public WorkPage(int total, int currentPage, int size, List<Employee> content) {
+	public AttendancePage(int total, int currentPage, int size, List<Employee> content) {
 		super();
 		this.total = total;
 		this.currentPage = currentPage;

@@ -18,13 +18,13 @@
 		</tr>
 
 
-		<c:forEach var="working" items="${workPage.content }">
+		<c:forEach var="attendance" items="${attendance.content }">
 			<tr>
-				<td>${working.classify }</td>
-				<td>${working.emp_no }</td>
-				<td>${working.emp_name }</td>
-				<td>${working.dept }</td>
-				<td>${working.position }</td>
+				<td>${attendance.classify }</td>
+				<td>${attendance.emp_no }</td>
+				<td>${attendance.emp_name }</td>
+				<td>${attendance.dept }</td>
+				<td>${attendance.position }</td>
 
 			</tr>
 		</c:forEach>
