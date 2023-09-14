@@ -175,8 +175,7 @@ footer {
 						</tr>
 
 					</table>
-
-					<br />
+					<input type="submit" value="수정"> <br />
 
 
 
@@ -206,7 +205,6 @@ footer {
 
 
 
-					<input type="submit" value="수정">
 
 					<button type="button" onclick="location.href='salarylist.do'">취소</button>
 

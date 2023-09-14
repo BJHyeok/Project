@@ -140,7 +140,7 @@ footer {
 			<nav>
 				<h2>목록</h2>
 				<ul>
-				<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
+					<li><a href="/paymanage/salary/salarylist.do">급여</a></li>
 					<li><a href="/paymanage/employee/employeeinfo.do">인사</a></li>
 					<li><a href="/paymanage/work/worklist.do">근태</a></li>
 					<li><a href="/paymanage/retire/retirelist.do">퇴직</a></li>
@@ -155,9 +155,13 @@ footer {
 
 		<article>
 			<section>
-				<form action="salary/write.do" method="post">
+				<form action="salarywrite.do" method="post">
 					<table border="1">
 						<tr>
+
+
+							<td>사원번호 : <input type="text" id="emp_no" name="emp_no"></td>
+
 							<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
 
 
@@ -177,11 +181,15 @@ footer {
 
 					</table>
 
+					<input type="submit" value="등록">
+
+
+					<button type="button" onclick="location.href='salarylist.do'">취소</button>
 					<br />
 
-				
 
-				
+
+
 
 					<table border="1">
 						<tr>
@@ -200,11 +208,6 @@ footer {
 					</table>
 
 
-
-					<input type="button" value="등록">
-
-					<button type="button"
-						onclick="location.href='salarylist.do'">취소</button>
 
 
 
