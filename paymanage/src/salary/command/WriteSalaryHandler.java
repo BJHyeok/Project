@@ -50,7 +50,7 @@ public class WriteSalaryHandler implements CommandHandler {
 			SalaryPay salaryPay = new SalaryPay(emp_no, base_pay, food, duty_charge, transport, bonus);
 
 			// WriteSalaryService를 사용하여 급여 내역을 데이터베이스에 저장
-			Integer savedEmpNo = writeService.write(salaryPay);
+			SalaryPay savedEmpNo = writeService.write(salaryPay);
 
 			// 급여 내역이 성공적으로 저장되면 성공 페이지로 리다이렉트
 			// 실패하면 에러 메시지를 설정하고 급여 내역 입력 폼으로 다시 포워딩

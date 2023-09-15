@@ -69,10 +69,8 @@ public class SalaryDao {
 					+ "from (select e.*, s.wage_date " + "from emp e " + "join salary s " + "on e.emp_no = s.emp_no "
 					+ "order by e.emp_no desc) n) " + "where rnum between ? and ?");
 
-			
 			pstmt.setInt(1, 1 + (page - 1) * 10);
 			pstmt.setInt(2, page * 10);
-		
 
 			rs = pstmt.executeQuery();
 
@@ -138,7 +136,7 @@ public class SalaryDao {
 		}
 	}
 
-	public int insert(Connection conn, SalaryPay salpay) throws SQLException {
+	public SalaryPay insert(Connection conn, SalaryPay salpay) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(
@@ -149,41 +147,35 @@ public class SalaryDao {
 			pstmt.setInt(4, salpay.getDuty_charge());
 			pstmt.setInt(5, salpay.getTransport());
 			pstmt.setInt(6, salpay.getBonus());
-			return pstmt.executeUpdate();
+			pstmt.executeUpdate();
+
+			return salpay;
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
+
 	// SalaryDao 클래스에 getSalaryByEmpNo 메서드 추가
 	public Salary getSalaryByEmpNo(Connection conn, int empNo) throws SQLException {
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    try {
-	        pstmt = conn.prepareStatement("SELECT * FROM salary WHERE emp_no = ?");
-	        pstmt.setInt(1, empNo);
-	        rs = pstmt.executeQuery();
-	        if (rs.next()) {
-	            // ResultSet에서 급여 정보를 추출하고 Salary 객체로 반환
-	            Salary salary = new Salary(
-	                rs.getString("emp_no"),
-	                rs.getDate("wage_date"),
-	                // 필요한 경우, Employee 객체도 가져와서 설정
-	                new Employee(
-	                    rs.getString("emp_no"),
-	                    rs.getString("classify"),
-	                    rs.getString("emp_name"),
-	                    rs.getString("dept"),
-	                    rs.getString("position")
-	                )
-	            );
-	            return salary;
-	        }
-	        return null; // 해당 사원 번호에 대한 급여 정보가 없을 경우 null 반환
-	    } finally {
-	        JdbcUtil.close(rs);
-	        JdbcUtil.close(pstmt);
-	    }
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM salary WHERE emp_no = ?");
+			pstmt.setInt(1, empNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				// ResultSet에서 급여 정보를 추출하고 Salary 객체로 반환
+				Salary salary = new Salary(rs.getString("emp_no"), rs.getDate("wage_date"),
+						// 필요한 경우, Employee 객체도 가져와서 설정
+						new Employee(rs.getString("emp_no"), rs.getString("classify"), rs.getString("emp_name"),
+								rs.getString("dept"), rs.getString("position")));
+				return salary;
+			}
+			return null; // 해당 사원 번호에 대한 급여 정보가 없을 경우 null 반환
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 
 }

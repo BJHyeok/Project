@@ -16,7 +16,7 @@ header {
 
 span {
 	font-size: 3em;
-	font-wiehgt: bold;
+	font-weight: bold;
 }
 
 form {

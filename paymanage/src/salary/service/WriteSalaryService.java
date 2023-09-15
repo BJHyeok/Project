@@ -11,17 +11,14 @@ import salary.model.SalaryPay;
 public class WriteSalaryService {
     private SalaryDao salaryDao = new SalaryDao();
 
-    public Integer write(SalaryPay salaryPay) {
+    public SalaryPay write(SalaryPay salaryPay) {
         Connection conn = null;
         try {
             conn = ConnectionProvider.getConnection();
             conn.setAutoCommit(false);
 
-            int result = salaryDao.insert(conn, salaryPay);
+            SalaryPay result = salaryDao.insert(conn, salaryPay);
 
-            if (result <= 0) {
-                throw new RuntimeException("Failed to insert salary");
-            }
 
             conn.commit();
             return result; // Insert된 급여 내역의 개수를 반환하도록 수정
