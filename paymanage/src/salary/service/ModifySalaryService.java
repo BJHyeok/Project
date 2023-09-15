@@ -6,32 +6,29 @@ import java.sql.SQLException;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import salary.dao.SalaryDao;
-//import salary.model.Salary;
 
 public class ModifySalaryService {
 	private SalaryDao salaryDao = new SalaryDao();
 
-	public void modify(ModifyRequest modReq) throws Exception {
+	public ModifyRequest modify(ModifyRequest modReq) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 
-//			Salary salary = salaryDao.selectById(conn, modReq.getEmp_no());
-//			if (salary == null) {
-//				throw new Exception();
-//			}
+			ModifyRequest result = salaryDao.update(conn, modReq);
 
-			salaryDao.update(conn, modReq.getEmp_no(), modReq.getBase_pay(), modReq.getFood(), modReq.getDuty_charge(),
-					modReq.getTransport(), modReq.getBonus());
+			conn.commit();
+			return result; // Insert된 급여 내역의 개수를 반환하도록 수정
+
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);
-		} catch (PermissionDeniedException e) {
+		} catch (RuntimeException e) {
 			JdbcUtil.rollback(conn);
+			throw e;
 		} finally {
 			JdbcUtil.close(conn);
 		}
-
 	}
 }

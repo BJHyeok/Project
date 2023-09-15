@@ -13,6 +13,7 @@ import employee.model.Employee;
 import jdbc.JdbcUtil;
 import salary.model.Salary;
 import salary.model.SalaryPay;
+import salary.service.ModifyRequest;
 
 public class SalaryDao {
 
@@ -97,17 +98,43 @@ public class SalaryDao {
 		return null;
 	}
 
-	public int update(Connection conn, String emp_no, int base_pay, int food, int duty_charge, int transport, int bonus)
-			throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement(
-				"update salary_item set base_pay = ?, food = ?, duty_charge = ?, transport = ?, bonus = ? where emp_no = ?")) {
-			pstmt.setInt(1, base_pay);
-			pstmt.setInt(2, food);
-			pstmt.setInt(3, duty_charge);
-			pstmt.setInt(4, transport);
-			pstmt.setInt(5, bonus);
-			pstmt.setString(6, emp_no);
-			return pstmt.executeUpdate();
+	public ModifyRequest update(Connection conn, ModifyRequest modReq) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+
+			pstmt = conn.prepareStatement(
+					"update salary_item set base_pay = ?, food = ?, duty_charge = ?, transport = ?, bonus = ? where emp_no = ?");
+			pstmt.setInt(1, modReq.getBase_pay());
+			pstmt.setInt(2, modReq.getFood());
+			pstmt.setInt(3, modReq.getDuty_charge());
+			pstmt.setInt(4, modReq.getTransport());
+			pstmt.setInt(5, modReq.getBonus());
+			pstmt.setString(6, modReq.getEmp_no());
+			pstmt.executeUpdate();
+
+			return modReq;
+
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public SalaryPay insert(Connection conn, SalaryPay salpay) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"insert into salary_item (emp_no, base_pay, food, duty_charge, transport, bonus) values (?,?,?,?,?,?)");
+			pstmt.setString(1, salpay.getEmp_no());
+			pstmt.setInt(2, salpay.getBase_pay());
+			pstmt.setInt(3, salpay.getFood());
+			pstmt.setInt(4, salpay.getDuty_charge());
+			pstmt.setInt(5, salpay.getTransport());
+			pstmt.setInt(6, salpay.getBonus());
+			pstmt.executeUpdate();
+
+			return salpay;
+		} finally {
+			JdbcUtil.close(pstmt);
 		}
 	}
 
@@ -132,25 +159,6 @@ public class SalaryDao {
 			return salary;
 		} finally {
 			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-
-	public SalaryPay insert(Connection conn, SalaryPay salpay) throws SQLException {
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(
-					"insert into salary_item (emp_no, base_pay, food, duty_charge, transport, bonus) values (?,?,?,?,?,?)");
-			pstmt.setString(1, salpay.getEmp_no());
-			pstmt.setInt(2, salpay.getBase_pay());
-			pstmt.setInt(3, salpay.getFood());
-			pstmt.setInt(4, salpay.getDuty_charge());
-			pstmt.setInt(5, salpay.getTransport());
-			pstmt.setInt(6, salpay.getBonus());
-			pstmt.executeUpdate();
-
-			return salpay;
-		} finally {
 			JdbcUtil.close(pstmt);
 		}
 	}

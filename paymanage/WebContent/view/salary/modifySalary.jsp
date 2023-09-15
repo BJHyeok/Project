@@ -157,6 +157,9 @@ footer {
 				<form action="salarymodify.do" method="post">
 					<table border="1">
 						<tr>
+						
+						
+							<td>사원번호 : <input type="text" id="emp_no" name="emp_no"></td>
 							<td>기본급 : <input type="text" id="base_pay" name="base_pay"></td>
 
 
