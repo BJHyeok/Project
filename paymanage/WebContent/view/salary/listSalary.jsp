@@ -106,7 +106,7 @@ footer {
 	<!-- header 변경 X-->
 
 	<header>
-		<a href="/paymanage/"><img src="/imgs/logo_transparent.png"
+		<a href="/paymanage/"><img src="${pageContext.request.contextPath}/imgs/logo_transparent.png"
 			style="vertical-align: middle; margin-right: auto;" width="250"
 			height="250"></a> <span
 			style="color: white; font-weight: bold; margin-top: 20px; margin-left: 50px">Hexagon
