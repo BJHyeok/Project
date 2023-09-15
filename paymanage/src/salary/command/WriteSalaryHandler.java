@@ -55,7 +55,7 @@ public class WriteSalaryHandler implements CommandHandler {
 			// 급여 내역이 성공적으로 저장되면 성공 페이지로 리다이렉트
 			// 실패하면 에러 메시지를 설정하고 급여 내역 입력 폼으로 다시 포워딩
 			if (savedEmpNo != null) {
-				return "/salary/success.jsp";
+				return "success.jsp";
 			} else {
 				errors.put("saveFailed", Boolean.TRUE);
 				return FORM_VIEW;

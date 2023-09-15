@@ -8,5 +8,8 @@
 </head>
 <body>
 성공!
+
+
+			<button type="button" onclick="location.href='salarylist.do'">돌아가기</button>
 </body>
 </html>
