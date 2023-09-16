@@ -43,7 +43,7 @@ public class SalaryDao {
 
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select * from salary_item");
+			rs = stmt.executeQuery("select * from salary_item order by emp_no desc");
 			List<SalaryPay> result = new ArrayList<>();
 
 			while (rs.next()) {

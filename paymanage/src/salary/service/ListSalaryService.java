@@ -23,7 +23,7 @@ public class ListSalaryService {
 
 			List<SalaryDetail> content = new ArrayList<SalaryDetail>();
 			CalcSalary calc = new CalcSalary();
-			for (int i = 0; i < content_salary.size(); i++) {
+			for (int i = 0; i < content_paylist.size(); i++) {
 				double total_1 = calc.calc_total(content_paylist.get(i));
 				double deduct = calc.calc_deduct(total_1);
 				double real = calc.calc_real(content_paylist.get(i));
