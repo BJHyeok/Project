@@ -197,12 +197,16 @@ footer {
 					<c:if test="${salaryPage.hasArticles()}">
 						<tr>
 							<td colspan="4"><c:if test="${salaryPage.startPage > 5}">
-									<a href="salarylist.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-								</c:if> <c:forEach var="pNo" begin="${salaryPage.startPage}"
+									<a href="salarylist.do?pageNo=${salaryPage.startPage - 5}">[이전]</a>
+								</c:if> 
+								
+								<c:forEach var="pNo" begin="${salaryPage.startPage}"
 									end="${salaryPage.endPage}">
+									
+									
 									<a href="salarylist.do?pageNo=${pNo}">[${pNo}]</a>
 								</c:forEach> <c:if test="${salaryPage.endPage < salaryPage.totalPages}">
-									<a href="salarylist.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+									<a href="salarylist.do?pageNo=${salaryPage.startPage + 5}">[다음]</a>
 								</c:if></td>
 
 						</tr>
