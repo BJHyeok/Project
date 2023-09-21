@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 import attendance.model.Attendance;
-import employee.model.Employee;
 import jdbc.JdbcUtil;
 
 public class AttendanceDao {
@@ -38,14 +37,13 @@ public class AttendanceDao {
 		}
 	}
 
-	public int selectByemp_no(Connection conn) throws SQLException {
+	public int selectTotal(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;
 
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from " + "(select * " + "from emp e " + "join employeeinfo ei "
-					+ "on e.emp_no = ei.emp_no " + "order by e.emp_no desc)");
+			rs = stmt.executeQuery("select count(*) from kintai");
 
 			if (rs.next()) {
 				return rs.getInt(1);
@@ -62,11 +60,13 @@ public class AttendanceDao {
 		ResultSet rs = null;
 
 		try {
+//			pstmt = conn.prepareStatement(
+//					"select * from ( select rownum rnum, a.* from (select * from kintai order by emp_no desc) a) where rnum between ? and ?");
 			pstmt = conn.prepareStatement(
-					"select * from ( select rownum rnum, a.* from (select * from kintai order by emp_no desc) a) where rnum between ? and ?");
+					"select * from kintai");
 
-			pstmt.setInt(1, 1 + (page - 1) * 10);
-			pstmt.setInt(2, page * 10);
+//			pstmt.setInt(1, 1 + (page - 1) * 10);
+//			pstmt.setInt(2, page * 10);
 
 			rs = pstmt.executeQuery();
 
@@ -74,7 +74,9 @@ public class AttendanceDao {
 
 			while (rs.next()) {
 				result.add(convertAttendance(rs));
+				System.out.println(result);
 			}
+
 			return result;
 		} finally {
 			JdbcUtil.close(rs);
@@ -83,10 +85,26 @@ public class AttendanceDao {
 	}
 
 	private Attendance convertAttendance(ResultSet rs) throws SQLException {
-		return new Attendance(rs.getInt("num"), rs.getDate("entrydate"), rs.getString("attendancetype"),
-				rs.getDate("startdate"), rs.getDate("enddate"), rs.getInt("attendancedays"), rs.getString("description"), rs.getString("emp_no"));
+		System.out.println(rs.getInt("num"));
+		System.out.println(toDate(rs.getTimestamp("entrydate")));
+		System.out.println(rs.getInt("attendancetype"));
+		System.out.println(toDate(rs.getTimestamp("startdate")));;
+		System.out.println(rs.getInt("enddate"));
+		System.out.println(rs.getInt("attendancedays"));
+		System.out.println(rs.getInt("description"));
+		System.out.println(rs.getInt("emp_no"));
+		
+		
+		return new Attendance(rs.getInt("num"), toDate(rs.getTimestamp("entrydate")), rs.getString("attendancetype"),
+				toDate(rs.getTimestamp("startdate")), toDate(rs.getTimestamp("enddate")), rs.getInt("attendancedays"),
+				rs.getString("description"), rs.getString("emp_no"));
 
 	}
+	
+	private Date toDate(Timestamp timestamp) {
+		return new Date(timestamp.getTime());
+	}
+
 
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());

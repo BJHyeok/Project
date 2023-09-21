@@ -27,15 +27,15 @@
 		<tr>
 			<c:forEach var="employee" items="${employeePage.content }">
 
-				<td>${employee.classify }</td>
+				<td>${employee.employee.classify  }</td>
 				<td>${employee.emp_no }</td>
-				<td>${employee.emp_name }</td>
-				<td>${employee.dept }</td>
-				<td>${employee.position }</td>
+				<td>${employee.employee.emp_name }</td>
+				<td>${employee.employee.dept }</td>
+				<td>${employee.employee.position }</td>
 
 			</c:forEach>
 			
-			<c:forEach var="attendancecon"  items="${attendance.content}">
+			<c:forEach var="attendancecon"  items="${attendancePage.content}">
 				<td>${attendancecon.entrydate}</td>
 				<td>${attendancecon.attendance}</td>
 				<td>${attendancecon.startdate}</td>

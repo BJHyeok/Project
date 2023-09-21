@@ -130,7 +130,7 @@ footer {
 				<ul>
 					<li><a href="salary/salarylist.do">급여</a></li>
 					<li><a href="employee/employeeinfo.do">인사</a></li>
-					<li><a href="attendence/attendencelist.do">근태</a></li>
+					<li><a href="attendance/attendancelist.do">근태</a></li>
 					<li><a href="retire/retirelist.do">퇴직</a></li>
 					<li><a href="article/list.do">공지사항</a></li>
 				</ul>

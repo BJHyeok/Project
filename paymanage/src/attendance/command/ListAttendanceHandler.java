@@ -17,17 +17,20 @@ public class ListAttendanceHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
+//		int pageNo = Integer.parseInt(pageNoVal);
 
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 
-		AttendancePage attendancePage = listService.getWorkPage(pageNo);
+		AttendancePage attendancePage = listService.getAttendancePage(pageNo);
 		req.setAttribute("attendancePage", attendancePage);
+		
+		System.out.println(attendancePage);
 
 		EmployeePage employeePage = empService.getEmployeePage(pageNo);
 		req.setAttribute("employeePage", employeePage);
 
-		return "/view/attendance/listAttendence.jsp";
+		return "/view/attendance/listAttendance.jsp";
 	}
 }

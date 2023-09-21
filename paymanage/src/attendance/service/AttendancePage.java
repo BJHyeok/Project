@@ -3,7 +3,6 @@ package attendance.service;
 import java.util.List;
 
 import attendance.model.Attendance;
-import employee.model.Employee;
 
 public class AttendancePage {
 	private int total;
@@ -98,6 +97,12 @@ public class AttendancePage {
 
 	public boolean hasArticles() {
 		return total > 0;
+	}
+
+	@Override
+	public String toString() {
+		return "AttendancePage [total=" + total + ", currentPage=" + currentPage + ", content=" + content
+				+ ", totalPages=" + totalPages + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 
 }

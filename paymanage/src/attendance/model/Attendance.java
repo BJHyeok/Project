@@ -80,6 +80,13 @@ public class Attendance {
 		this.emp_no = emp_no;
 	}
 
+	@Override
+	public String toString() {
+		return "Attendance [num=" + num + ", entrydate=" + entrydate + ", attendencetype=" + attendencetype
+				+ ", startdate=" + startdate + ", enddate=" + enddate + ", attendencedays=" + attendencedays
+				+ ", description=" + description + ", emp_no=" + emp_no + "]";
+	}
+
 	
 }
 	
