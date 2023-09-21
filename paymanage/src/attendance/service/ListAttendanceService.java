@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import attendance.dao.AttendanceDao;
+import attendance.model.Attendance;
 import employee.model.Employee;
 import jdbc.connection.ConnectionProvider;
 
@@ -15,7 +16,7 @@ public class ListAttendanceService {
 	public AttendancePage getWorkPage(int pageNum) throws SQLException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = attendanceDao.selectByemp_no(conn);
-			List<Employee> content = attendanceDao.select(conn, pageNum);
+			List<Attendance> content = attendanceDao.select(conn, pageNum);
 
 			return new AttendancePage(total, pageNum, size, content);
 		} catch (SQLException e) {

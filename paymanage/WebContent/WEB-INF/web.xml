@@ -41,7 +41,7 @@
     <url-pattern>/article/delete.do</url-pattern>
     <url-pattern>/employee/employeeinfo.do</url-pattern>
     <url-pattern>/salary/salarylist.do</url-pattern>
-    <url-pattern>/work/worklist.do</url-pattern>
+    <url-pattern>/attendance/attendancelist.do</url-pattern>
     <url-pattern>/retire/retirelist.do</url-pattern>
   </filter-mapping>
   <servlet>

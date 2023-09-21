@@ -24,23 +24,28 @@
 		</tr>
 
 
-		<c:forEach var="attendance" items="${attendance.content }">
-			<tr>
-				<td>${attendance.classify }</td>
-				<td>${attendance.emp_no }</td>
-				<td>${attendance.emp_name }</td>
-				<td>${attendance.dept }</td>
-				<td>${attendance.position }</td>
-				<td>${attendance.entrydate}</td>
-				<td>${attendance.attendance}</td>
-				<td>${attendance.startdate}</td>
-				<td>${attendance.enddate}</td>
-				<td>${attendance.attendance}</td>
-				<td>${attendance.enddate}</td>
-				<td>${attendance.enddate}</td>
+		<tr>
+			<c:forEach var="employee" items="${employeePage.content }">
 
-			</tr>
-		</c:forEach>
+				<td>${employee.classify }</td>
+				<td>${employee.emp_no }</td>
+				<td>${employee.emp_name }</td>
+				<td>${employee.dept }</td>
+				<td>${employee.position }</td>
+
+			</c:forEach>
+			
+			<c:forEach var="attendancecon"  items="${attendance.content}">
+				<td>${attendancecon.entrydate}</td>
+				<td>${attendancecon.attendance}</td>
+				<td>${attendancecon.startdate}</td>
+				<td>${attendancecon.enddate}</td>
+				<td>${attendancecon.attendance}</td>
+				<td>${attendancecon.enddate}</td>
+				<td>${attendancecon.enddate}</td>
+			</c:forEach>
+		</tr>
+
 	</table>
 </body>
 </html>

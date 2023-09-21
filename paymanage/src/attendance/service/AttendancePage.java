@@ -2,17 +2,18 @@ package attendance.service;
 
 import java.util.List;
 
+import attendance.model.Attendance;
 import employee.model.Employee;
 
 public class AttendancePage {
 	private int total;
 	private int currentPage;
-	private List<Employee> content;
+	private List<Attendance> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public AttendancePage(int total, int currentPage, int size, List<Employee> content) {
+	public AttendancePage(int total, int currentPage, int size, List<Attendance> content) {
 		super();
 		this.total = total;
 		this.currentPage = currentPage;
@@ -59,11 +60,11 @@ public class AttendancePage {
 		this.currentPage = currentPage;
 	}
 
-	public List<Employee> getContent() {
+	public List<Attendance> getContent() {
 		return content;
 	}
 
-	public void setContent(List<Employee> content) {
+	public void setContent(List<Attendance> content) {
 		this.content = content;
 	}
 
